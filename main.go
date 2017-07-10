@@ -92,6 +92,7 @@ func mustNewDB() *db {
 func createPost(a *app) http.HandlerFunc {
 
 	return func(w http.ResponseWriter, r *http.Request) {
+		defer r.Body.Close()
 
 		p := &post{}
 
@@ -113,6 +114,8 @@ func createPost(a *app) http.HandlerFunc {
 func deletePost(a *app) http.HandlerFunc {
 
 	return func(w http.ResponseWriter, r *http.Request) {
+		defer r.Body.Close()
+
 		cleanID, err := strconv.Atoi(r.URL.Path[14:])
 
 		if err != nil || cleanID == 0 {
@@ -134,6 +137,7 @@ func deletePost(a *app) http.HandlerFunc {
 func viewPost(a *app) http.HandlerFunc {
 
 	return func(w http.ResponseWriter, r *http.Request) {
+		defer r.Body.Close()
 		cleanID, err := strconv.Atoi(r.URL.Path[12:])
 
 		if err != nil || cleanID == 0 {

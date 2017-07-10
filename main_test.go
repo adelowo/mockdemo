@@ -2,7 +2,6 @@ package main
 
 import (
 	"errors"
-	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"strings"
@@ -97,11 +96,10 @@ func TestViewPost(t *testing.T) {
 
 	a := &app{db}
 
-	r, _ := http.NewRequest(http.MethodGet, "/posts/view/12", nil)
+	r, _ := http.NewRequest(http.MethodGet, "/posts/view/12", strings.NewReader(""))
 
 	rr := httptest.NewRecorder()
 
-	fmt.Println(r.URL.Path)
 	http.HandlerFunc(viewPost(a)).ServeHTTP(rr, r)
 
 	if got := rr.Code; got != http.StatusOK {

@@ -15,4 +15,4 @@ The app uses an sqlite database but for the tests, the database interaction is m
 ### License
 MIT
 
-[blog]: https://lanreadelowo.com/blog/
+[blog]: https://lanreadelowo.com/blog/2017/07/06/mocking-go/
